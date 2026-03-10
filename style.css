@@ -692,6 +692,57 @@ sup { font-size: .7em; }
 .footer a:hover { color: #93c5fd; }
 .footer-note { font-size: .8rem; margin-top: 6px; opacity: .7; }
 
+/* ── Related Works Table ── */
+.relworks-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  max-width: 860px;
+  margin-bottom: 14px;
+}
+.relworks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+  background: var(--bg);
+  white-space: nowrap;
+}
+.relworks-table th {
+  background: #f1f5f9;
+  padding: 11px 16px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 2px solid var(--border);
+  letter-spacing: .02em;
+}
+.relworks-table th:first-child { text-align: left; }
+.relworks-table td {
+  padding: 9px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  border-bottom: 1px solid #f1f5f9;
+}
+.relworks-table td:first-child { text-align: left; color: var(--text); }
+.relworks-table tr:hover td { background: #fafafa; }
+.relworks-table .check {
+  color: #059669;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.relworks-table .cross {
+  color: #d1d5db;
+  font-size: 1rem;
+}
+.relworks-ours td {
+  background: #eff6ff;
+  border-top: 2px solid #bfdbfe;
+  border-bottom: 1px solid #bfdbfe;
+}
+.relworks-ours td:first-child { color: var(--primary); }
+.relworks-ours .check { color: var(--primary); }
+
 /* ── Stats Figures Grid ── */
 .stats-figures-grid {
   display: grid;

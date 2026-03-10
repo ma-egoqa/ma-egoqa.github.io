@@ -170,6 +170,129 @@
       </div>
     </div>
 
+    <!-- Related Works Comparison -->
+    <h3 class="subsection-title">Comparison with Related Benchmarks</h3>
+    <div class="relworks-table-wrapper">
+      <table class="relworks-table">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th># QA</th>
+            <th>Duration</th>
+            <th>Egocentric</th>
+            <th>Days-Long</th>
+            <th>Cross-Video</th>
+            <th>Theory-of-Mind</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AssistQ</td>
+            <td>531</td>
+            <td>115 sec</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>EgoTextVQA</td>
+            <td>7,064</td>
+            <td>102 sec</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>EgoMemoria</td>
+            <td>7,026</td>
+            <td>1–60 min</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>MuMA-ToM</td>
+            <td>900</td>
+            <td>36 sec</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="check">✓</td>
+          </tr>
+          <tr>
+            <td>EgoSchema</td>
+            <td>5,063</td>
+            <td>180 sec</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>EgoThink</td>
+            <td>700</td>
+            <td>—</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="check">✓</td>
+          </tr>
+          <tr>
+            <td>EgoToM</td>
+            <td>1,039</td>
+            <td>300 sec</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="check">✓</td>
+          </tr>
+          <tr>
+            <td>EgoLifeQA</td>
+            <td>6,000</td>
+            <td>44 hour</td>
+            <td class="check">✓</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>CVBench</td>
+            <td>1,000</td>
+            <td>106 sec</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>EgoExoLearn</td>
+            <td>2,200</td>
+            <td>13 min</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr class="relworks-ours">
+            <td><strong>MA-EgoQA (Ours)</strong></td>
+            <td><strong>1,741</strong></td>
+            <td><strong>266 hour</strong></td>
+            <td class="check">✓</td>
+            <td class="check">✓</td>
+            <td class="check">✓</td>
+            <td class="check">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="stats-figures-caption">
+      MA-EgoQA is the <strong>only benchmark</strong> that simultaneously covers egocentric video, days-long duration,
+      cross-video multi-agent reasoning, and theory-of-mind — making it uniquely challenging and comprehensive.
+    </p>
+
     <!-- QA Examples -->
     <h3 class="subsection-title">QA Examples</h3>
     <div class="figure-block">
