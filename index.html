@@ -182,13 +182,29 @@
 
     <!-- Dataset Statistics -->
     <h3 class="subsection-title">Dataset Statistics</h3>
-    <div class="figure-block">
-      <img src="images/statistics.png" alt="MA-EgoQA Dataset Statistics" />
-      <p class="caption">
-        Distribution of MA-EgoQA questions by category, question type (What/Who/Why/How/When/Which), recording day, and agent.
-        The balanced distribution ensures evaluation is not dominated by a single skill, day, or agent.
-      </p>
+    <div class="stats-figures-grid">
+      <div class="stats-figure-item">
+        <img src="images/fig_statistics_category.png" alt="Distribution by Category" />
+        <p class="stats-fig-label">By Category</p>
+      </div>
+      <div class="stats-figure-item">
+        <img src="images/fig_statistics_qtype.png" alt="Distribution by Question Type" />
+        <p class="stats-fig-label">By Question Type</p>
+      </div>
+      <div class="stats-figure-item">
+        <img src="images/fig_statistics_day.png" alt="Distribution by Day" />
+        <p class="stats-fig-label">By Recording Day</p>
+      </div>
+      <div class="stats-figure-item">
+        <img src="images/fig_statistics_agent.png" alt="Distribution by Agent" />
+        <p class="stats-fig-label">By Agent</p>
+      </div>
     </div>
+    <p class="stats-figures-caption">
+      MA-EgoQA questions are well-balanced across all five categories, seven recording days, six agents,
+      and diverse question types (What / Who / Why / How / When / Which),
+      ensuring comprehensive and unbiased evaluation.
+    </p>
   </div>
 </section>
 
