@@ -314,7 +314,7 @@ sup { font-size: .7em; }
 .section-intro {
   font-size: 1.05rem;
   color: var(--text-secondary);
-  max-width: 760px;
+  max-width: 100%;
   margin-bottom: 40px;
   line-height: 1.7;
   text-align: justify;
