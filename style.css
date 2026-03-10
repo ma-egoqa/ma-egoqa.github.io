@@ -285,6 +285,7 @@ sup { font-size: .7em; }
   font-size: 1rem;
   color: var(--text);
   line-height: 1.6;
+  text-align: justify;
 }
 
 /* ── Sections ── */
@@ -316,6 +317,7 @@ sup { font-size: .7em; }
   max-width: 760px;
   margin-bottom: 40px;
   line-height: 1.7;
+  text-align: justify;
 }
 
 /* ── Stats Banner ── */
@@ -356,6 +358,7 @@ sup { font-size: .7em; }
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--text);
+  text-align: justify;
 }
 .abstract-text p + p { margin-top: 16px; }
 
@@ -491,6 +494,7 @@ sup { font-size: .7em; }
   color: var(--text-secondary);
   line-height: 1.65;
   margin-bottom: 12px;
+  text-align: justify;
 }
 .four-w1h {
   display: grid;
@@ -657,6 +661,7 @@ sup { font-size: .7em; }
   font-size: .875rem;
   color: var(--text-secondary);
   line-height: 1.65;
+  text-align: justify;
 }
 
 /* ── Callouts ── */
