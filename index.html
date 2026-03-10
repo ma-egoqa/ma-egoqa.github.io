@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MA-EgoQA: Multi-Agent Egocentric Video Question Answering</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <span class="nav-logo">MA-EgoQA</span>
+    <div class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#method">EgoMAS</a>
+      <a href="#results">Results</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <p class="venue-tag">ECCV 2026</p>
+    <h1 class="paper-title">
+      Multi-Agent Egocentric Video<br/>Question Answering
+    </h1>
+    <p class="paper-subtitle">MA-EgoQA Benchmark &amp; EgoMAS Baseline</p>
+
+    <div class="authors">
+      <span class="author">Kangsan Kim</span><sup>*</sup>
+    </div>
+
+    <div class="affiliations">
+      <span>KAIST</span>
+    </div>
+
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://github.com/KangsanKim07/MA-EgoQA" target="_blank">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        Code &amp; Data
+      </a>
+      <a class="btn btn-secondary" href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Paper
+      </a>
+    </div>
+
+    <!-- Teaser Figure -->
+    <div class="teaser">
+      <img src="images/concept_figure.png" alt="MA-EgoQA Concept Figure" />
+      <p class="caption">
+        <strong>MA-EgoQA</strong> evaluates AI systems on understanding multiple simultaneous egocentric video streams from embodied agents.
+        A human manager can query the multi-agent system about events observed by any of the agents — requiring the system to integrate
+        experiences across agents and retrieve relevant episodes to answer correctly.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- TL;DR Banner -->
+<section class="tldr-section">
+  <div class="container">
+    <div class="tldr-card">
+      <span class="tldr-label">TL;DR</span>
+      <p>We introduce <strong>MA-EgoQA</strong>, the first benchmark for question answering over multiple long-horizon egocentric videos
+      from embodied AI agents (1,741 questions, 5 categories, 6 agents, 7 days). We also propose <strong>EgoMAS</strong>, a training-free
+      baseline using shared memory and dynamic retrieval that outperforms state-of-the-art frontier models like Gemini-2.5-Flash and GPT-5.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section id="abstract" class="section">
+  <div class="container">
+    <h2 class="section-title">Abstract</h2>
+    <div class="abstract-text">
+      <p>
+        As embodied models become powerful, humans will collaborate with multiple embodied AI agents at their workplace or home in the future.
+        To ensure better communication between human users and the multi-agent system, it is crucial to interpret incoming information from
+        agents in parallel and refer to the appropriate context for each query.
+      </p>
+      <p>
+        In this work, we formally define the novel problem of understanding multiple long-horizon egocentric videos simultaneously collected
+        from embodied agents. We introduce <strong>MultiAgent-EgoQA (MA-EgoQA)</strong>, a benchmark designed to systematically evaluate
+        existing models in this scenario. MA-EgoQA provides <strong>1,741 questions</strong> unique to multiple egocentric streams, spanning
+        five categories: social interaction, task coordination, theory-of-mind, temporal reasoning, and environmental interaction.
+      </p>
+      <p>
+        We further propose <strong>EgoMAS</strong>, a simple baseline that leverages shared memory across embodied agents and agent-wise
+        dynamic retrieval. Comprehensive evaluation reveals that current approaches are unable to effectively handle multiple egocentric
+        streams, highlighting the need for future advances in system-level understanding across agents.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Key Numbers -->
+<section class="stats-banner">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">1,741</span>
+        <span class="stat-label">QA Pairs</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">Agents</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">7</span>
+        <span class="stat-label">Days of Video</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">41.4%</span>
+        <span class="stat-label">Best Model Acc.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benchmark Section -->
+<section id="benchmark" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">MA-EgoQA Benchmark</h2>
+    <p class="section-intro">
+      MA-EgoQA is built on the <a href="https://egolife-dataset.github.io/" target="_blank">EgoLife</a> dataset,
+      where 6 people lived together for 7 days wearing egocentric cameras. Every question requires information
+      from <strong>more than two agents</strong>, making it fundamentally different from single-agent benchmarks.
+    </p>
+
+    <!-- Categories -->
+    <h3 class="subsection-title">Five Benchmark Categories</h3>
+    <div class="categories-grid">
+      <div class="category-card" data-color="blue">
+        <div class="cat-icon">💬</div>
+        <h4>Social Interaction (SI)</h4>
+        <p>Localizing and grounding casual conversations and affiliative behaviors across multiple video streams. Questions cover group behaviors, interpersonal engagements, and meaningful information exchanged during interactions.</p>
+      </div>
+      <div class="category-card" data-color="green">
+        <div class="cat-icon">🤝</div>
+        <h4>Task Coordination (TC)</h4>
+        <p>How agents divide roles, sequence actions, and make decisions toward shared goals. Reflects practical importance of multi-agent collaboration and task planning.</p>
+      </div>
+      <div class="category-card" data-color="purple">
+        <div class="cat-icon">🧠</div>
+        <h4>Theory of Mind (ToM)</h4>
+        <p>Reasoning about mental states — what an agent believed, misunderstood, or intended. Requires diverse perspectives to capture contextual cues and infer latent cognitive states. <em>The hardest category.</em></p>
+      </div>
+      <div class="category-card" data-color="orange">
+        <div class="cat-icon">⏱️</div>
+        <h4>Temporal Reasoning (TR)</h4>
+        <p>Aligning timelines across egocentric streams. Includes <em>concurrency</em> (what was each agent doing simultaneously?) and <em>comparison</em> (relative ordering of events across agents).</p>
+      </div>
+      <div class="category-card" data-color="red">
+        <div class="cat-icon">🏠</div>
+        <h4>Environmental Interaction (EI)</h4>
+        <p>Tracking object usage distributed across multiple agents — frequency of use, first-time use, and which agent interacted most with shared objects in the environment.</p>
+      </div>
+    </div>
+
+    <!-- QA Examples -->
+    <h3 class="subsection-title">QA Examples</h3>
+    <div class="figure-block">
+      <img src="images/examples.png" alt="QA Examples across categories" />
+      <p class="caption">
+        Representative QA examples from each category. Note that all questions are unique to multi-agent settings —
+        they cannot be answered by looking at a single agent's video and often require reasoning across multiple timestamps.
+      </p>
+    </div>
+
+    <!-- Dataset Statistics -->
+    <h3 class="subsection-title">Dataset Statistics</h3>
+    <div class="figure-block">
+      <img src="images/statistics.png" alt="MA-EgoQA Dataset Statistics" />
+      <p class="caption">
+        Distribution of MA-EgoQA questions by category, question type (What/Who/Why/How/When/Which), recording day, and agent.
+        The balanced distribution ensures evaluation is not dominated by a single skill, day, or agent.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Benchmark Construction -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Benchmark Construction Pipeline</h2>
+    <p class="section-intro">
+      MA-EgoQA uses a rigorous multi-stage pipeline to ensure question quality and difficulty:
+      GPT-based generation → LLM filtering → human verification.
+    </p>
+
+    <div class="figure-block">
+      <img src="images/generation.png" alt="Benchmark Construction Pipeline" />
+      <p class="caption">
+        <strong>Three-stage data generation:</strong> (1) Single-span questions are generated from 5-minute video windows per agent.
+        (2) Multi-span questions are created by grouping semantically similar single-span QA pairs.
+        (3) Template-based questions are used for structured TR and EI categories.
+      </p>
+    </div>
+
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>GPT-based Generation</h4>
+          <p>Single-span (5-min windows), multi-span (grouped by semantic similarity), and template-based QA generation using GPT-4o and GPT-5. Generates 5 options per question (1 correct + 4 distractors).</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>LLM Filtering (3 Stages)</h4>
+          <p><strong>Zero-shot filtering</strong> removes trivially answerable questions. <strong>Single-agent filtering</strong> removes questions solvable from one agent's memory. <strong>Cross-model validation</strong> uses Gemini-2.5-Flash and Claude-Sonnet-4 to catch biases.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Human Verification</h4>
+          <p>4 human verifiers reviewed 3,436 candidates with full access to captions, transcripts, and videos. <strong>1,741 high-quality samples</strong> passed all stages.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EgoMAS Method -->
+<section id="method" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">EgoMAS: Our Baseline</h2>
+    <p class="section-intro">
+      EgoMAS (Egocentric Multi-Agent System) is a <strong>training-free</strong> centralized baseline that tackles multi-agent egocentric
+      reasoning through two key components: event-based shared memory and agent-wise dynamic retrieval.
+    </p>
+
+    <div class="figure-block">
+      <img src="images/egomas.png" alt="EgoMAS Architecture" />
+      <p class="caption">
+        <strong>EgoMAS architecture.</strong> A centralized manager integrates 10-minute captions from all agents into a shared
+        event-based memory using 4W1H (When, What, Where, Who, How) structured records. Given a query, EgoMAS first retrieves
+        relevant system-level memories, then dynamically generates agent-specific sub-queries for fine-grained retrieval.
+      </p>
+    </div>
+
+    <div class="method-columns">
+      <div class="method-card">
+        <h3>
+          <span class="method-icon">🗂️</span>
+          Event-based Shared Memory
+        </h3>
+        <p>
+          Every 10 minutes, each agent submits a caption of its observations. A centralized manager integrates these into
+          a <strong>structured 4W1H record</strong>:
+        </p>
+        <div class="four-w1h">
+          <span><strong>When</strong> — timestamp</span>
+          <span><strong>What</strong> — event description</span>
+          <span><strong>Where</strong> — location</span>
+          <span><strong>Who</strong> — agents involved</span>
+          <span><strong>How</strong> — manner of action</span>
+        </div>
+        <p>
+          This structured format aligns agent perspectives while preserving critical details, enabling coherent global
+          understanding across all agents.
+        </p>
+      </div>
+
+      <div class="method-card">
+        <h3>
+          <span class="method-icon">🔍</span>
+          Agent-wise Dynamic Retrieval
+        </h3>
+        <p>
+          Given a query, EgoMAS performs a <strong>two-stage retrieval</strong>:
+        </p>
+        <ol class="retrieval-steps">
+          <li><strong>System-level retrieval</strong> — top-<em>n</em> shared memory entries via BM25 ranking to identify relevant events globally</li>
+          <li><strong>Agent-level retrieval</strong> — dynamically generates per-agent sub-queries and retrieves top-<em>k</em> memories from each relevant agent's memory (filtered by relevance threshold τ)</li>
+        </ol>
+        <p>
+          This selective approach uses only <strong>4–7k tokens</strong> of context per query — compared to 128k–1M tokens
+          for non-retrieval baselines — while achieving better accuracy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section id="results" class="section">
+  <div class="container">
+    <h2 class="section-title">Evaluation Results</h2>
+    <p class="section-intro">
+      We evaluate 16 baselines across three categories (caption concat, frame concat, RAG-based) plus EgoMAS on MA-EgoQA.
+      Random chance is 20% (5 options per question).
+    </p>
+
+    <div class="results-table-wrapper">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Context</th>
+            <th>SI</th>
+            <th>TC</th>
+            <th>ToM</th>
+            <th>TR</th>
+            <th>EI</th>
+            <th>Avg.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-random">
+            <td>Random Chance</td>
+            <td>—</td>
+            <td>20.0</td>
+            <td>20.0</td>
+            <td>20.0</td>
+            <td>20.0</td>
+            <td>20.0</td>
+            <td>20.0</td>
+          </tr>
+          <tr class="group-header">
+            <td colspan="8">All Caption Concat Baselines</td>
+          </tr>
+          <tr>
+            <td>Gemini-2.5-Flash</td>
+            <td>1M</td>
+            <td>41.2</td>
+            <td>36.4</td>
+            <td>24.3</td>
+            <td class="best-in-group">46.6</td>
+            <td>34.0</td>
+            <td>36.9</td>
+          </tr>
+          <tr>
+            <td>GPT-5</td>
+            <td>272k</td>
+            <td>36.2</td>
+            <td>33.9</td>
+            <td>22.6</td>
+            <td>39.7</td>
+            <td>38.7</td>
+            <td>34.8</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-7B-1M</td>
+            <td>500k</td>
+            <td>27.1</td>
+            <td>28.9</td>
+            <td>20.9</td>
+            <td>24.0</td>
+            <td>26.2</td>
+            <td>26.1</td>
+          </tr>
+          <tr>
+            <td>Qwen3-30b-a3b</td>
+            <td>240k</td>
+            <td>29.5</td>
+            <td>27.7</td>
+            <td>16.6</td>
+            <td>23.0</td>
+            <td>26.5</td>
+            <td>25.6</td>
+          </tr>
+          <tr>
+            <td>gpt-oss-120b</td>
+            <td>128k</td>
+            <td>28.7</td>
+            <td>27.5</td>
+            <td>22.6</td>
+            <td>28.2</td>
+            <td>25.6</td>
+            <td>26.8</td>
+          </tr>
+          <tr>
+            <td>Llama-3.1-Nemotron-8B</td>
+            <td>1M</td>
+            <td>20.5</td>
+            <td>22.9</td>
+            <td>20.4</td>
+            <td>22.7</td>
+            <td>21.2</td>
+            <td>21.7</td>
+          </tr>
+          <tr class="group-header">
+            <td colspan="8">All Frame Concat Baselines</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-VL-7B</td>
+            <td>128k</td>
+            <td>26.3</td>
+            <td>26.5</td>
+            <td>21.3</td>
+            <td>22.2</td>
+            <td>25.1</td>
+            <td>25.2</td>
+          </tr>
+          <tr>
+            <td>VideoChat-Flash</td>
+            <td>32k</td>
+            <td>23.7</td>
+            <td>25.0</td>
+            <td>20.0</td>
+            <td>24.4</td>
+            <td>20.7</td>
+            <td>23.1</td>
+          </tr>
+          <tr>
+            <td>VideoXL-2</td>
+            <td>32k</td>
+            <td>20.2</td>
+            <td>19.8</td>
+            <td>19.2</td>
+            <td>20.9</td>
+            <td>21.7</td>
+            <td>20.4</td>
+          </tr>
+          <tr class="group-header">
+            <td colspan="8">RAG Baselines</td>
+          </tr>
+          <tr>
+            <td>BM25 + Qwen3VL-8B</td>
+            <td>8.1k</td>
+            <td class="best-in-group">44.7</td>
+            <td>37.6</td>
+            <td class="best-in-group">30.2</td>
+            <td>33.5</td>
+            <td>30.6</td>
+            <td>36.0</td>
+          </tr>
+          <tr>
+            <td>WorldMM-8B</td>
+            <td>4.1k</td>
+            <td>29.3</td>
+            <td>34.5</td>
+            <td>21.7</td>
+            <td>25.1</td>
+            <td>22.6</td>
+            <td>27.6</td>
+          </tr>
+          <tr>
+            <td>VideoRAG</td>
+            <td>8.0k</td>
+            <td>27.1</td>
+            <td>26.0</td>
+            <td>20.9</td>
+            <td>25.1</td>
+            <td>25.6</td>
+            <td>25.3</td>
+          </tr>
+          <tr>
+            <td>EgoRAG</td>
+            <td>—</td>
+            <td>22.3</td>
+            <td>21.1</td>
+            <td>18.3</td>
+            <td>15.3</td>
+            <td>18.9</td>
+            <td>19.6</td>
+          </tr>
+          <tr class="group-header group-header-ours">
+            <td colspan="8">Ours (EgoMAS)</td>
+          </tr>
+          <tr class="row-best">
+            <td><strong>EgoMAS (Gemini-2.5-Flash)</strong></td>
+            <td>4.6k</td>
+            <td>41.5</td>
+            <td class="col-best">41.3</td>
+            <td class="col-best">33.6</td>
+            <td>39.4</td>
+            <td class="col-best">48.2</td>
+            <td class="col-best"><strong>41.4</strong></td>
+          </tr>
+          <tr class="row-second">
+            <td>EgoMAS (Qwen3VL-8B-Thinking)</td>
+            <td>5.4k</td>
+            <td>38.0</td>
+            <td>39.9</td>
+            <td>28.9</td>
+            <td class="col-best">47.4</td>
+            <td>44.9</td>
+            <td>40.3</td>
+          </tr>
+          <tr>
+            <td>EgoMAS (Qwen3VL-8B-Instruct)</td>
+            <td>7.4k</td>
+            <td>43.1</td>
+            <td>39.1</td>
+            <td>24.3</td>
+            <td>35.5</td>
+            <td>40.7</td>
+            <td>37.7</td>
+          </tr>
+          <tr>
+            <td>EgoMAS (Qwen2.5VL-7B-Instruct)</td>
+            <td>5.4k</td>
+            <td>37.8</td>
+            <td>38.6</td>
+            <td>26.0</td>
+            <td>34.2</td>
+            <td>36.5</td>
+            <td>35.6</td>
+          </tr>
+          <tr class="group-header">
+            <td colspan="8">Oracle (Upper Bound)</td>
+          </tr>
+          <tr class="row-oracle">
+            <td>Oracle (Gemini-2.5-Flash)</td>
+            <td>—</td>
+            <td>86.4</td>
+            <td>97.6</td>
+            <td>70.2</td>
+            <td>88.2</td>
+            <td>81.3</td>
+            <td>83.8</td>
+          </tr>
+          <tr class="row-oracle">
+            <td>Oracle (Qwen3VL-8B)</td>
+            <td>—</td>
+            <td>76.9</td>
+            <td>81.0</td>
+            <td>57.0</td>
+            <td>77.4</td>
+            <td>69.9</td>
+            <td>74.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="takeaways">
+      <h3>Key Takeaways</h3>
+      <div class="takeaway-grid">
+        <div class="takeaway-item takeaway-warning">
+          <div class="takeaway-icon">⚠️</div>
+          <p>Even the best model (Gemini-2.5-Flash with 1M context) achieves only <strong>36.9%</strong> — barely above random with all captions concatenated.</p>
+        </div>
+        <div class="takeaway-item takeaway-insight">
+          <div class="takeaway-icon">💡</div>
+          <p>Retrieval-based approaches consistently outperform non-retrieval methods, while using <strong>100× less context</strong> (4–8k vs 128k–1M tokens).</p>
+        </div>
+        <div class="takeaway-item takeaway-success">
+          <div class="takeaway-icon">🏆</div>
+          <p>EgoMAS with a small 8B model (Qwen3VL-8B-Thinking) surpasses both Gemini-2.5-Flash and GPT-5 baselines at <strong>40.3%</strong>.</p>
+        </div>
+        <div class="takeaway-item takeaway-gap">
+          <div class="takeaway-icon">📈</div>
+          <p>The large gap to Oracle (~83.8%) shows there is <strong>substantial room for improvement</strong> — this is a challenging open problem.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Analysis -->
+<section id="analysis" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Analysis</h2>
+
+    <div class="analysis-grid">
+      <!-- Multi-agent requirement -->
+      <div class="analysis-block">
+        <h3>Does MA-EgoQA Require Multi-Agent Memory?</h3>
+        <div class="analysis-content">
+          <img src="images/single_agent.png" alt="Single Agent vs Multi-Agent Performance" />
+          <p>
+            Restricting EgoMAS to a single agent's memory causes a <strong>substantial performance drop</strong> across all categories,
+            confirming that MA-EgoQA genuinely requires integrating information from multiple agents — not just one.
+          </p>
+        </div>
+      </div>
+
+      <!-- Number of required agents -->
+      <div class="analysis-block">
+        <h3>Impact of Number of Required Agents</h3>
+        <div class="analysis-content">
+          <img src="images/num_required_agents.png" alt="Performance vs Number of Required Agents" />
+          <p>
+            Performance <strong>consistently decreases</strong> as the number of agents required to answer a question increases.
+            This highlights that current multi-agent knowledge fusion approaches remain limited — building coherent global understanding
+            is an open challenge.
+          </p>
+        </div>
+      </div>
+
+      <!-- Efficiency -->
+      <div class="analysis-block">
+        <h3>Efficiency: Accuracy vs. Latency</h3>
+        <div class="analysis-content">
+          <img src="images/latency_maegoqa.png" alt="Latency vs Accuracy Analysis" />
+          <p>
+            EgoMAS achieves the highest accuracy among retrieval-based models at only <strong>1.3 seconds per query</strong>.
+            Non-retrieval models incur orders-of-magnitude higher latency, making EgoMAS a practical choice for real-world deployment.
+          </p>
+        </div>
+      </div>
+
+      <!-- Case Study -->
+      <div class="analysis-block analysis-block-wide">
+        <h3>Case Study</h3>
+        <div class="analysis-content">
+          <img src="images/case_study.png" alt="Case Study Comparison" />
+          <p>
+            <strong>Gemini-2.5-Flash</strong> and <strong>VideoChat-Flash</strong> receive excessive information and fail to focus
+            on relevant events. <strong>WorldMM</strong> retrieves memories but without cross-agent aggregation, it fails.
+            <strong>EgoMAS</strong> uses shared memory to locate target events, performs dynamic retrieval for details,
+            and answers correctly.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ToM Difficulty Callout -->
+    <div class="callout callout-purple">
+      <h4>🧠 Why is Theory of Mind (ToM) the Hardest Category?</h4>
+      <p>
+        ToM consistently exhibits the lowest accuracy across all models. Unlike other categories where answers can be
+        directly extracted from visual or textual cues, ToM requires <strong>inferring latent mental states</strong> —
+        goals, beliefs, intentions — that are never explicitly stated. This corroborates prior work identifying ToM as
+        exceptionally challenging due to its inherent ambiguity and the need for recursive mental-state reasoning.
+      </p>
+    </div>
+
+    <!-- Multi-span callout -->
+    <div class="callout callout-orange">
+      <h4>⏱️ Multi-span Questions Are Significantly Harder</h4>
+      <p>
+        Questions requiring context from <strong>multiple non-contiguous timestamps</strong> (multi-span) are substantially
+        harder than single-span questions. This suggests that identifying and relating multiple events across 7 days of video
+        requires much stronger retrieval and temporal reasoning capabilities than current systems possess.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section id="bibtex" class="section">
+  <div class="container">
+    <h2 class="section-title">BibTeX</h2>
+    <p class="section-intro">If you find MA-EgoQA or EgoMAS useful in your research, please cite our paper:</p>
+    <div class="bibtex-block">
+      <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+      <pre id="bibtex-text">@inproceedings{kim2026maegoqa,
+  title     = {Multi-Agent Egocentric Video Question Answering},
+  author    = {Kim, Kangsan},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2026},
+  url       = {https://github.com/KangsanKim07/MA-EgoQA}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>MA-EgoQA &bull; ECCV 2026 &bull; <a href="https://github.com/KangsanKim07/MA-EgoQA" target="_blank">GitHub</a></p>
+    <p class="footer-note">Website design inspired by <a href="https://davidfan.io/webssl/" target="_blank">davidfan.io/webssl</a></p>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 80) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Active nav link tracking
+  const sections = document.querySelectorAll('section[id], header');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(sec => observer.observe(sec));
+
+  // Copy bibtex
+  function copyBibtex() {
+    const text = document.getElementById('bibtex-text').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
