@@ -695,8 +695,8 @@ sup { font-size: .7em; }
 /* ── Stats Figures Grid ── */
 .stats-figures-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   max-width: 860px;
   margin-bottom: 14px;
 }
@@ -740,7 +740,7 @@ sup { font-size: .7em; }
   .stats-grid { gap: 28px; }
   .stat-number { font-size: 2rem; }
   .categories-grid { grid-template-columns: 1fr; }
-  .stats-figures-grid { grid-template-columns: 1fr; }
+  .stats-figures-grid { grid-template-columns: 1fr 1fr; }
   .takeaway-grid { grid-template-columns: 1fr 1fr; }
   .tldr-card { flex-direction: column; gap: 10px; }
   .four-w1h { grid-template-columns: 1fr; }
