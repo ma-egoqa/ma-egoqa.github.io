@@ -201,31 +201,32 @@ sup { font-size: .7em; }
   box-shadow: 0 4px 16px rgba(0,0,0,.3);
 }
 .btn-hf {
-  background: #ff9d00;
-  color: #fff !important;
-  border: 1.5px solid #e68a00;
-  box-shadow: 0 2px 8px rgba(255,157,0,.35);
+  background: #fef3c7;
+  color: #111827 !important;
+  border: 1.5px solid #fcd34d;
+  box-shadow: 0 2px 8px rgba(251,191,36,.25);
 }
 .btn-hf:hover {
-  background: #e68a00;
-  color: #fff !important;
-  border-color: #cc7a00;
-  box-shadow: 0 4px 16px rgba(255,157,0,.4);
+  background: #fde68a;
+  color: #111827 !important;
+  border-color: #f59e0b;
+  box-shadow: 0 4px 16px rgba(251,191,36,.35);
 }
 .btn-arxiv {
-  background: #b31b1b;
-  color: #fff !important;
-  border: 1.5px solid #991717;
-  box-shadow: 0 2px 8px rgba(179,27,27,.3);
+  background: #fee2e2;
+  color: #111827 !important;
+  border: 1.5px solid #fca5a5;
+  box-shadow: 0 2px 8px rgba(239,68,68,.2);
 }
 .btn-arxiv:hover {
-  background: #991717;
-  color: #fff !important;
-  border-color: #7f1313;
-  box-shadow: 0 4px 16px rgba(179,27,27,.35);
+  background: #fecaca;
+  color: #111827 !important;
+  border-color: #f87171;
+  box-shadow: 0 4px 16px rgba(239,68,68,.3);
 }
 .btn-icon { width: 18px; height: 18px; flex-shrink: 0; }
-.btn-ai-icon { font-size: 1.1rem; line-height: 1; }
+.btn-ai-icon { font-size: 1.1rem; line-height: 1; color: #111827 !important; }
+.btn-emoji { font-size: 1.1rem; line-height: 1; }
 
 /* Teaser */
 .teaser {
