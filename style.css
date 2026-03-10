@@ -824,7 +824,7 @@ sup { font-size: .7em; }
 }
 .stats-figures-caption {
   max-width: 860px;
-  font-size: .875rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.65;
   margin-bottom: 40px;

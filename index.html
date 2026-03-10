@@ -169,7 +169,7 @@
       <div class="category-card" data-color="purple">
         <div class="cat-icon">🧠</div>
         <h4>Theory of Mind (ToM)</h4>
-        <p>Reasoning about mental states — what an agent believed, misunderstood, or intended. Requires diverse perspectives to capture contextual cues and infer latent cognitive states. The hardest category.</p>
+        <p>Reasoning about mental states: what an agent believed, misunderstood, or intended. Requires diverse perspectives to capture contextual cues and infer latent cognitive states. The hardest category.</p>
       </div>
       <div class="category-card" data-color="orange">
         <div class="cat-icon">⏱️</div>
@@ -179,7 +179,7 @@
       <div class="category-card" data-color="red">
         <div class="cat-icon">🏠</div>
         <h4>Environmental Interaction (EI)</h4>
-        <p>Tracking object usage distributed across multiple agents — frequency of use, first-time use, and which agent interacted most with shared objects in the environment.</p>
+        <p>Tracking object usage distributed across multiple agents, including frequency of use, first-time use, and which agent interacted most with shared objects in the environment.</p>
       </div>
     </div>
 
@@ -311,7 +311,7 @@
     <div class="figure-block">
       <img src="images/examples.png" alt="QA Examples across categories" />
       <p class="caption">
-        Representative QA examples from each category. Note that all questions are unique to multi-agent settings —
+        Representative QA examples from each category. Note that all questions are unique to multi-agent settings:
         they cannot be answered by looking at a single agent's video and often require reasoning across multiple timestamps.
       </p>
     </div>
@@ -391,7 +391,7 @@
   <div class="container">
     <h2 class="section-title">EgoMAS: Our Baseline</h2>
     <p class="section-intro">
-      EgoMAS (Egocentric Multi-Agent System) is a <strong>training-free</strong> centralized baseline that tackles multi-agent egocentric
+      EgoMAS (Egocentric Multi-Agent System) is a <strong>training-free</strong> baseline that tackles multi-agent egocentric
       reasoning through two key components: event-based shared memory and agent-wise dynamic retrieval.
     </p>
 
@@ -415,11 +415,11 @@
           a <strong>structured 4W1H record</strong>:
         </p>
         <div class="four-w1h">
-          <span><strong>When</strong> — timestamp</span>
-          <span><strong>What</strong> — event description</span>
-          <span><strong>Where</strong> — location</span>
-          <span><strong>Who</strong> — agents involved</span>
-          <span><strong>How</strong> — manner of action</span>
+          <span><strong>When</strong>: timestamp</span>
+          <span><strong>What</strong>: event description</span>
+          <span><strong>Where</strong>: location</span>
+          <span><strong>Who</strong>: agents involved</span>
+          <span><strong>How</strong>: manner of action</span>
         </div>
         <p>
           This structured format aligns agent perspectives while preserving critical details, enabling coherent global
@@ -436,12 +436,12 @@
           Given a query, EgoMAS performs a <strong>two-stage retrieval</strong>:
         </p>
         <ol class="retrieval-steps">
-          <li><strong>System-level retrieval</strong> — top-<em>n</em> shared memory entries via BM25 ranking to identify relevant events globally</li>
-          <li><strong>Agent-level retrieval</strong> — dynamically generates per-agent sub-queries and retrieves top-<em>k</em> memories from each relevant agent's memory (filtered by relevance threshold τ)</li>
+          <li><strong>System-level retrieval</strong>: top-<em>n</em> shared memory entries via BM25 ranking to identify relevant events globally</li>
+          <li><strong>Agent-level retrieval</strong>: dynamically generates per-agent sub-queries and retrieves top-<em>k</em> memories from each relevant agent's memory (filtered by relevance threshold τ)</li>
         </ol>
         <p>
-          This selective approach uses only <strong>4–7k tokens</strong> of context per query — compared to 128k–1M tokens
-          for non-retrieval baselines — while achieving better accuracy.
+          This selective approach uses only <strong>4–7k tokens</strong> of context per query, compared to 128k–1M tokens
+          for non-retrieval baselines, while achieving better accuracy.
         </p>
       </div>
     </div>
@@ -697,7 +697,7 @@
       <div class="takeaway-grid">
         <div class="takeaway-item takeaway-warning">
           <div class="takeaway-icon">⚠️</div>
-          <p>Even the best model (Gemini-2.5-Flash with 1M context) achieves only <strong>36.9%</strong> — barely above random with all captions concatenated.</p>
+          <p>Even the best model (Gemini-2.5-Flash with 1M context) achieves only <strong>36.9%</strong>, barely above random with all captions concatenated.</p>
         </div>
         <div class="takeaway-item takeaway-insight">
           <div class="takeaway-icon">💡</div>
@@ -709,7 +709,7 @@
         </div>
         <div class="takeaway-item takeaway-gap">
           <div class="takeaway-icon">📈</div>
-          <p>The large gap to Oracle (~83.8%) shows there is <strong>substantial room for improvement</strong> — this is a challenging open problem.</p>
+          <p>The large gap to Oracle (~83.8%) shows there is <strong>substantial room for improvement</strong>. This remains a challenging open problem.</p>
         </div>
       </div>
     </div>
@@ -729,7 +729,7 @@
           <img src="images/single_agent.png" alt="Single Agent vs Multi-Agent Performance" />
           <p>
             Restricting EgoMAS to a single agent's memory causes a <strong>substantial performance drop</strong> across all categories,
-            confirming that MA-EgoQA genuinely requires integrating information from multiple agents — not just one.
+            confirming that MA-EgoQA genuinely requires integrating information from multiple agents, not just one.
           </p>
         </div>
       </div>
@@ -741,8 +741,21 @@
           <img src="images/num_required_agents.png" alt="Performance vs Number of Required Agents" />
           <p>
             Performance <strong>consistently decreases</strong> as the number of agents required to answer a question increases.
-            This highlights that current multi-agent knowledge fusion approaches remain limited — building coherent global understanding
+            This highlights that current multi-agent knowledge fusion approaches remain limited; building coherent global understanding
             is an open challenge.
+          </p>
+        </div>
+      </div>
+
+      <!-- Multi-span -->
+      <div class="analysis-block">
+        <h3>Multi-span Questions Are Significantly Harder</h3>
+        <div class="analysis-content">
+          <img src="images/mutli-span.png" alt="Multi-span Accuracy Analysis" />
+          <p>
+            Models achieve substantially lower accuracy on queries grounded in <strong>multiple timestamps</strong>
+            (Multi-span in SI/TC, Comparison in TR), showing that identifying and relating multiple events
+            across seven days of video requires stronger retrieval capabilities.
           </p>
         </div>
       </div>
@@ -755,19 +768,6 @@
           <p>
             EgoMAS achieves the highest accuracy among retrieval-based models at only <strong>1.3 seconds per query</strong>.
             Non-retrieval models incur orders-of-magnitude higher latency, making EgoMAS a practical choice for real-world deployment.
-          </p>
-        </div>
-      </div>
-
-      <!-- Multi-span -->
-      <div class="analysis-block">
-        <h3>Multi-span &amp; Multi-agent Reasoning as Key Challenges</h3>
-        <div class="analysis-content">
-          <img src="images/mutli-span.png" alt="Multi-span Accuracy Analysis" />
-          <p>
-            Models achieve substantially lower accuracy on queries grounded in <strong>multiple timestamps</strong>
-            (Multi-span in SI/TC, Comparison in TR), showing that identifying and relating multiple events
-            across seven days of video requires stronger retrieval capabilities.
           </p>
         </div>
       </div>
@@ -807,21 +807,21 @@
       <h4>🧠 Why is Theory of Mind (ToM) the Hardest Category?</h4>
       <p>
         ToM consistently exhibits the lowest accuracy across all models. Unlike other categories where answers can be
-        directly extracted from visual or textual cues, ToM requires <strong>inferring latent mental states</strong> —
-        goals, beliefs, intentions — that are never explicitly stated. This corroborates prior work identifying ToM as
+        directly extracted from visual or textual cues, ToM requires <strong>inferring latent mental states</strong>
+        (goals, beliefs, and intentions) that are never explicitly stated. This corroborates prior work identifying ToM as
         exceptionally challenging due to its inherent ambiguity and the need for recursive mental-state reasoning.
       </p>
     </div>
 
     <!-- Multi-span callout -->
-    <div class="callout callout-orange">
+    <!-- <div class="callout callout-orange">
       <h4>⏱️ Multi-span Questions Are Significantly Harder</h4>
       <p>
         Questions requiring context from <strong>multiple non-contiguous timestamps</strong> (multi-span) are substantially
         harder than single-span questions. This suggests that identifying and relating multiple events across 7 days of video
         requires much stronger retrieval and temporal reasoning capabilities than current systems possess.
       </p>
-    </div>
+    </div> -->
   </div>
 </section>
 
