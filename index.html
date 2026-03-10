@@ -71,7 +71,7 @@
       <img src="images/concept_figure2.png" alt="MA-EgoQA Concept Figure" />
       <p class="caption">
         <strong>MA-EgoQA</strong> evaluates AI systems on understanding multiple simultaneous egocentric video streams from embodied agents.
-        A human manager can query the multi-agent system about events observed by any of the agents — requiring the system to integrate
+        A human manager can query the multi-agent system about events observed by any of the agents, requiring the system to integrate
         experiences across agents and retrieve relevant episodes to answer correctly.
       </p>
     </div>
@@ -84,7 +84,7 @@
     <div class="tldr-card">
       <span class="tldr-label">TL;DR</span>
       <p>We introduce <strong>MA-EgoQA</strong>, the first benchmark for question answering over multiple long-horizon egocentric videos
-      from embodied AI agents (1,741 questions, 5 categories, 6 agents, 7 days). We also propose <strong>EgoMAS</strong>, a training-free
+      from embodied agents (1,741 questions, 5 categories, 6 agents, 7 days). <br> Moreover, we propose <strong>EgoMAS</strong>, a training-free
       baseline using shared memory and dynamic retrieval that outperforms state-of-the-art frontier models like Gemini-2.5-Flash and GPT-5.</p>
     </div>
   </div>
@@ -101,8 +101,8 @@
         agents in parallel and refer to the appropriate context for each query.
       </p>
       <p>
-        In this work, we formally define the novel problem of understanding multiple long-horizon egocentric videos simultaneously collected
-        from embodied agents. We introduce <strong>MultiAgent-EgoQA (MA-EgoQA)</strong>, a benchmark designed to systematically evaluate
+        In this work, we formally define the novel problem of <strong>understanding multiple long-horizon egocentric videos simultaneously collected
+        from embodied agents.</strong> We introduce <strong>MultiAgent-EgoQA (MA-EgoQA)</strong>, a benchmark designed to systematically evaluate
         existing models in this scenario. MA-EgoQA provides <strong>1,741 questions</strong> unique to multiple egocentric streams, spanning
         five categories: social interaction, task coordination, theory-of-mind, temporal reasoning, and environmental interaction.
       </p>
@@ -148,7 +148,7 @@
   <div class="container">
     <h2 class="section-title">MA-EgoQA Benchmark</h2>
     <p class="section-intro">
-      MA-EgoQA is built on the <a href="https://egolife-dataset.github.io/" target="_blank">EgoLife</a> dataset,
+      MA-EgoQA is built on the <a href="https://egolife-ai.github.io/" target="_blank">EgoLife</a> dataset,
       where 6 people lived together for 7 days wearing egocentric cameras. Every question requires information
       from <strong>more than two agents</strong>, making it fundamentally different from single-agent benchmarks.
     </p>
@@ -184,7 +184,7 @@
     </div>
 
     <!-- Related Works Comparison -->
-    <h3 class="subsection-title">Comparison with Related Benchmarks</h3>
+    <!-- <h3 class="subsection-title">Comparison with Related Benchmarks</h3>
     <div class="relworks-table-wrapper">
       <table class="relworks-table">
         <thead>
@@ -304,7 +304,7 @@
     <p class="stats-figures-caption">
       MA-EgoQA is the <strong>only benchmark</strong> that simultaneously covers egocentric video, days-long duration,
       cross-video multi-agent reasoning, and theory-of-mind — making it uniquely challenging and comprehensive.
-    </p>
+    </p> -->
 
     <!-- QA Examples -->
     <h3 class="subsection-title">QA Examples</h3>
@@ -349,16 +349,14 @@
   <div class="container">
     <h2 class="section-title">Benchmark Construction Pipeline</h2>
     <p class="section-intro">
-      MA-EgoQA uses a rigorous multi-stage pipeline to ensure question quality and difficulty:
+      MA-EgoQA uses a rigorous multi-stage pipeline to ensure question quality and difficulty: <br>
       GPT-based generation → LLM filtering → human verification.
     </p>
 
     <div class="figure-block">
       <img src="images/generation.png" alt="Benchmark Construction Pipeline" />
       <p class="caption">
-        <strong>Three-stage data generation:</strong> (1) Single-span questions are generated from 5-minute video windows per agent.
-        (2) Multi-span questions are created by grouping semantically similar single-span QA pairs.
-        (3) Template-based questions are used for structured TR and EI categories.
+        <strong>Benchmark construction pipeline.</strong> QA pairs are generated for each category through its dedicated process, and refined through LLM filtering and manual verification.
       </p>
     </div>
 
