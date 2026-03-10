@@ -188,6 +188,26 @@ sup { font-size: .7em; }
   color: var(--text);
   border-color: var(--primary);
 }
+.btn-hf {
+  background: #ff9d00;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(255,157,0,.35);
+}
+.btn-hf:hover {
+  background: #e68a00;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(255,157,0,.4);
+}
+.btn-arxiv {
+  background: #b31b1b;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(179,27,27,.3);
+}
+.btn-arxiv:hover {
+  background: #991717;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(179,27,27,.35);
+}
 .btn-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
 /* Teaser */
