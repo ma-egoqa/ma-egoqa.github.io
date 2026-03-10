@@ -143,15 +143,14 @@ img { max-width: 100%; height: auto; display: block; }
 sup { font-size: .7em; }
 .affiliations {
   font-size: .9rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   margin-bottom: 32px;
   line-height: 1.8;
 }
-.contact-email {
-  font-family: 'Fira Code', 'Cascadia Code', monospace;
-  font-size: .85rem;
-  color: var(--text-secondary);
-  margin-top: 4px;
+.equal-note {
+  font-size: .8rem;
+  color: var(--text-tertiary);
+  margin-top: 6px;
 }
 
 /* Buttons */
