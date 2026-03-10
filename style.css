@@ -188,27 +188,44 @@ sup { font-size: .7em; }
   color: var(--text);
   border-color: var(--primary);
 }
+.btn-github {
+  background: #24292e;
+  color: #fff !important;
+  border: 1.5px solid #24292e;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.btn-github:hover {
+  background: #1a1f24;
+  color: #fff !important;
+  border-color: #1a1f24;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
 .btn-hf {
   background: #ff9d00;
-  color: #fff;
+  color: #fff !important;
+  border: 1.5px solid #e68a00;
   box-shadow: 0 2px 8px rgba(255,157,0,.35);
 }
 .btn-hf:hover {
   background: #e68a00;
-  color: #fff;
+  color: #fff !important;
+  border-color: #cc7a00;
   box-shadow: 0 4px 16px rgba(255,157,0,.4);
 }
 .btn-arxiv {
   background: #b31b1b;
-  color: #fff;
+  color: #fff !important;
+  border: 1.5px solid #991717;
   box-shadow: 0 2px 8px rgba(179,27,27,.3);
 }
 .btn-arxiv:hover {
   background: #991717;
-  color: #fff;
+  color: #fff !important;
+  border-color: #7f1313;
   box-shadow: 0 4px 16px rgba(179,27,27,.35);
 }
 .btn-icon { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-ai-icon { font-size: 1.1rem; line-height: 1; }
 
 /* Teaser */
 .teaser {
